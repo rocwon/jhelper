@@ -20,7 +20,7 @@ jhelper中，绝大多数类名都是以er/or结尾的，它们都是您的工�
 | 4 | Cryptor   | 静态类。提供了一组方法，支持Hash，对称加密以及签名操作                                                                      |
 | 5 | Executor  | 静态类。提供了两个execute方法，用于异步执行任务                                                              |
 | 6 | Finder    | 静态类。提供了一组find方法，用于在各种类型的数组、集合中进行查找                                               |
-| 7 | Guarder   | 静态类。常用的生成验证码、密码、Session的方法以及Session验证的机制                                            |
+| 7 | Guarder   | 静态类。用于生成图片验证码、密码加密、Session生成及Session验证的机制                                            |
 | 8 | INIReader | 非静态类。用于处理Windows INI配置文件。提供了一组get*方法获取键值                                      |
 | 9 | Reflector | 静态类。以反射的方式设置(setValue)、获取(getValue)对象属性的值。fill/dump实现了map和java bean之间的转换        |
 | 10| Requester | 静态类。基于Java Http Client API，封装了常用的get/post 请求                                                 |
