@@ -4,7 +4,12 @@
 jhelper为Java开发人员提供了了一系列常用的工具类。如果您不愿意自己造轮子了，建议您用它。
 
 ### 目标
-jhelper的目标是Small, Stable, Smart. 短小，稳定，好用。
+jhelper的目标是Simple, Stable, Smart.
+#### Simple 源文件少、体积小、结构清晰，非必要不依赖第三方Library
+#### Stable 稳定是对Library的基本要求，谁的生活都不容易，不要给别人制造BUG
+#### Smart  简洁且语义化的API，让用户不看文档也能用起来
+
+jhelper中，绝大多数类名都是以er/or结尾的，它们都是您的工具人。而简单，稳定，好用，是一个工具人的基本修养。
 
 ### 功能
 | # | 类名      | 用途                                                                                          |
