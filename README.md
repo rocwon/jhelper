@@ -1,7 +1,10 @@
 # jhelper
 
 ### 介绍
-A set of utilities for java developers. It's very small, stable and smart.
+jhelper为Java开发人员提供了了一系列常用的工具类。如果您不愿意自己造轮子了，建议您用它。
+
+### 目标
+jhelper的目标是Small, Stable, Smart. 短小，稳定，好用。
 
 ### 功能
 | # | 类名      | 用途                                                                                          |
