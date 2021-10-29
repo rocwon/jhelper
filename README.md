@@ -1,26 +1,27 @@
 # jhelper
 
-#### Description
+### 介绍
 A set of utilities for java developers. It's very small, stable and smart.
 
-#### Features
-| # | Name      | Summary |
-|---|-----------|---------|
-| 1 | Empty     |         |
-| 2 | Concator  |         |
-| 3 | Converter |         |
-| 4 | Cryptor   |         |
-| 5 | Executor  |         |
-| 6 | Finder    |         |
-| 7 | Guarder   |         |
-| 8 | INIReader |         |
-| 9 | Reflector |         |
-| 10| Requester |         |
-| 11| Slicer    |         |
-| 12| Sorter    |         |
-| 13| Spliter   |         |
-| 14| Pinyin    |         |
-| 15| Shell     |         |
-| 16| Time      |         |
+### 功能
+| # | Name      | Summary                                                                                          |
+|---|-----------|---------                                                                                         |
+| 1 | Empty     | 提供了一组is方法，判断各种类型的数组、集合是否为null或empty                                          |
+| 2 | Concator  | 提供了一组concat方法，将两个数组/集合或者多个字符串合并起来                                           |
+| 3 | Converter | 提供了一组to*方法，用于数据类型之间的转换                                                            |
+| 4 | Cryptor   | 支持Hash，对称加密以及签名操作                                                                      |
+| 5 | Executor  | 提供了两个execute方法，用于异步执行任务                                                              |
+| 6 | Finder    | 提供了一组find方法，用于在各种类型的数组、集合中进行查找                                               |
+| 7 | Guarder   | 常用的生成验证码、密码、Session的方法以及Session验证的机制                                            |
+| 8 | INIReader | 非静态类，用于处理Windows INI配置文件。提供了一组get*方法获取键值                                      |
+| 9 | Reflector | 以反射的方式设置(setValue)、获取(getValue)对象属性的值。fill/dump实现了map和java bean之间的转换        |
+| 10| Requester | 基于Java Http Client API，封装了常用的get/post 请求                                                 |
+| 11| Slicer    | 提供了一组slice方法，将各种类型的数组、集合进行切片                                                   |
+| 12| Sorter    | 提供了一组sort方法，对各种类型的数组、集合进行排序，支持顺序/倒序，以及并行排序                         |
+| 13| Spliter   | 提供了一组split方法，将一个字符串，按特定的分隔符分割为一系列的子字符串或者整数                         |
+| 14| Persister | 基于Apache JDBC-Utils，封装了常用的数据库操作，并且支持连接池                                        |
+| 15| Pinyin    | 提供了一个方法 getFirstLetters，提取输入的中文的拼音首字母，比如：“中国人民”->"ZGRM"                  |
+| 16| Shell     | 仿照Unix/Linux Shell风格，提供了一系列文件操作方法，比如cp, mv, write灯                              |
+| 17| Time      | 基于JAVA新的日期API，提供了一系列日期操作的方法，比如日期/时间的获取、比较、转换、格式化等               |
 
 
