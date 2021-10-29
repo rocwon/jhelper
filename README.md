@@ -6,7 +6,7 @@ A set of utilities for java developers. It's very small, stable and smart.
 ### 功能
 | # | Name      | Summary                                                                                          |
 |---|-----------|---------                                                                                         |
-| 1 | Empty     | 提供了一组is方法，判断各种类型的数组、集合是否为null或empty                                          |
+| 1 | Empty     | 提供了一组is方法，判断各种类型的数组、集合、对象是否为null或empty                                          |
 | 2 | Concator  | 提供了一组concat方法，将两个数组/集合或者多个字符串合并起来                                           |
 | 3 | Converter | 提供了一组to*方法，用于数据类型之间的转换                                                            |
 | 4 | Cryptor   | 提供了一组方法，支持Hash，对称加密以及签名操作                                                                      |
