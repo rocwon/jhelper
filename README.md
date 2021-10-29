@@ -4,7 +4,7 @@
 A set of utilities for java developers. It's very small, stable and smart.
 
 ### 功能
-| # | Name      | Summary                                                                                          |
+| # | 类名      | 用途                                                                                          |
 |---|-----------|---------                                                                                         |
 | 1 | Empty     | 静态类。提供了一组is方法，判断各种类型的数组、集合、对象是否为null或empty                                          |
 | 2 | Concator  | 静态类。提供了一组concat方法，将两个数组/集合或者多个字符串合并起来                                           |
@@ -21,7 +21,7 @@ A set of utilities for java developers. It's very small, stable and smart.
 | 13| Spliter   | 静态类。提供了一组split方法，将一个字符串，按特定的分隔符分割为一系列的子字符串或者整数                         |
 | 14| Persister | 非静态类。基于Apache JDBC-Utils，封装了常用的数据库操作，并且支持连接池                                        |
 | 15| Pinyin    | 静态类。提供了一个方法 getFirstLetters，提取输入的中文的拼音首字母，比如：“中国人民”->"ZGRM"                  |
-| 16| Shell     | 静态类。仿照Unix/Linux Shell风格，提供了一系列文件操作方法，比如cp, mv, write灯                              |
+| 16| Shell     | 静态类。仿照Unix/Linux Shell风格，提供了一系列文件操作方法，比如cp, mv, write等                              |
 | 17| Time      | 静态类。基于JAVA新的日期API，提供了一系列日期操作的方法，比如日期/时间的获取、比较、转换、格式化等               |
 
 
