@@ -7,7 +7,7 @@ jhelper为Java开发人员提供了一系列常用的工具类。如果您不想
 jhelper的设计目标是Simple, Stable, Smart.
 - Simple 源文件少、体积小、结构清晰，非必要不依赖第三方Library
 - Stable 稳定是对Library的基本要求，谁的生活都不容易，不要给别人制造Bug
-- Smart  简洁且语义化的API，让用户不看文档也能用起来
+- Smart  简洁且语义化的API，没有学习成本，让用户不看文档也能用起来
 
 jhelper中，绝大多数类名都是以er/or结尾的，它们都是您的工具人。简单，稳定，好用，是一个工具人的基本修养。
 
