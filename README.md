@@ -1,7 +1,7 @@
 # jhelper
 
 ### 介绍
-jhelper为Java开发人员提供了一系列常用的工具类。如果您不愿意自己造轮子了，建议您用它。
+jhelper为Java开发人员提供了一系列常用的工具类。如果您不想在每个项目里自己造轮子了，建议您用它。
 
 ### 目标
 jhelper的设计目标是Simple, Stable, Smart.
