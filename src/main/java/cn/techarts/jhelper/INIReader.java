@@ -7,13 +7,19 @@ import java.io.IOException;
 import java.io.BufferedReader;
 
 /**
- * An implementation of Windows INI configuration file.
+ * An implementation of Windows INI configuration file.<p>
+ * I always think the INI structure is more powerful than properties file.
+ * Maybe you noticed that some very popular open source softwares using INI 
+ * to store their configurations such as PHP(php.ini) and MYSQL(my.ini).
  */
 public final class INIReader{
 	
 	private static final String SECTION = "\\[.*\\]";
 	private Map<String, Map<String, String>> sections = new HashMap<>(32);
 	
+	/**
+	 *@param path The absolute full path of the configuration file 
+	 */
 	public INIReader(String path){
 		try{
 			var reader = new BufferedReader(new FileReader( path));
@@ -26,27 +32,48 @@ public final class INIReader{
 		}
 	}
 	
+	/**
+	 * @return Returns all sections that defined in the configuration file
+	 */
 	public Map<String, Map<String, String>> getSections(){
 		return this.sections;
 	}
 	
+	/**
+	 * @return Returns the entry section including all key-value pairs
+	 */
 	public Map<String, String> getSection(String section){
 		return this.sections.get(section);
 	}
 	
+	/**
+	 * @return Returns the value of the specified key as a string
+	 */
 	public String get(String section, String key){
 		var p = sections.get(section);
 		return p != null ? p.get( key) : "";
 	}
 	
+	/**
+	 * @return Returns an integer value of the specified key<br>
+	 * Actually, it converts the result of the method {@link get} to INT 
+	 */
 	public int getInt(String section, String key){
 		return Converter.toInt(get( section, key));
 	}
 	
+	/**
+	 * @return Returns an integer value of the specified key<br>
+	 * Actually, it converts the result of the method {@link get} to float 
+	 */
 	public float getFloat(String section, String key){
 		return Converter.toFloat(get( section, key));
 	}
 	
+	/**
+	 * @return Returns an integer value of the specified key<br>
+	 * Actually, it converts the result of the method {@link get} to boolean 
+	 */
 	public boolean getBool(String section, String key){
 		return Converter.toBoolean(get(section, key));
 	}

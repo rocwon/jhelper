@@ -50,4 +50,29 @@ public class EmptyTest {
 			TestCase.assertEquals(true, true);
 		}
 	}
+	
+	@Test
+	public void testZero() {
+		byte arg1 = 0x00;
+		TestCase.assertEquals(true, Empty.zero(arg1));
+		short arg2 = 0;
+		TestCase.assertEquals(true, Empty.zero(arg2));
+		int arg3 = 0;
+		TestCase.assertEquals(true, Empty.zero(arg3));
+		float arg4 = 0f;
+		TestCase.assertEquals(true, Empty.zero(arg4));
+		long arg5 = 0l;
+		TestCase.assertEquals(true, Empty.zero(arg5));
+		double arg6 = 0d;
+		TestCase.assertEquals(true, Empty.zero(arg6));
+	}
+	
+	@Test
+	public void testOneOf() {
+		Book book1 = new Book(1);
+		Book book2 = new Book(2);
+		TestCase.assertEquals(true, Empty.oneOf(book1, book2, null));
+		TestCase.assertEquals(false, Empty.allOf(book1, book2, null));
+		TestCase.assertEquals(true, Empty.is(null, book2) != null);
+	}
 }

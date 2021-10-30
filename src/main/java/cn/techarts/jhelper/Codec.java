@@ -8,8 +8,9 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * The utility dependents on JACKSON(Faster JSON) library.<p>
- * It supports 3 protocols as following:<br>
+ * The utility dependents on JACKSON(Faster JSON) library.<br>
+ *  you MUST import the JACKSON to your classpath firstly before using this.<p>
+ * jhelper Codec supports 3 protocols as follows:<br>
  * 1. base64: {@link https://datatracker.ietf.org/doc/html/rfc4648}<br>
  * 2. JSON: {@link https://www.json.org/json-en.html}<br>
  * 3. MSGPACK: {@link https://msgpack.org/}
@@ -34,6 +35,7 @@ public final class Codec {
 	}
 	
 	//------------------------------------Base64--------------------------------------------------
+	
 	public static String toBase64(byte[] src) {
 		if(Empty.is(src)) return null;
 		return new String(Base64.getEncoder().encode(src));

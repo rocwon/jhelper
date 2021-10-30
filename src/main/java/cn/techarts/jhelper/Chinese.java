@@ -3,7 +3,9 @@ package cn.techarts.jhelper;
 import java.io.UnsupportedEncodingException;
 
 /**
- * GB2312 CHAR-SET IS SUPPORTED ONLY
+ * <h3>Only GB2312 CHAR-SET is supported. </h3>
+ * The class is very light-weight. it doesn't dependent on any Chinese dictionary.
+ * A few Chinese characters can't be recognized because it's out of GB2312 char-set.
  */
 public class Chinese {
 	private final static int[] SP_BOUNDARIES = { 1601, 1637, 1833, 2078, 2274,
@@ -13,6 +15,10 @@ public class Chinese {
 			"F", "G", "H", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
 			"T", "W", "X", "Y", "Z" };
 
+	/**
+	 * @return Returns the first letters of PINYIN for the given Chinese words<p>
+	 * For example, "½­É½Èç»­" --> "JSRH"
+	 */
 	public static String getPinyinFirstLetters(String chinese) {
 		if (chinese == null || "".equals(chinese.trim())) return "";
 		var result = new StringBuilder();

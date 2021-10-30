@@ -13,6 +13,7 @@ import java.util.Set;
  * 2. or combine series strings as one.
  */
 public final class Concator {
+	
 	public static int[] concat(int[] array1, int[] array2) {
 		if(array1 == null) return array2;
 		if(array2 == null) return array1;
