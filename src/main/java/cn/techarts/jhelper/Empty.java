@@ -9,13 +9,59 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 1. Detect the specific parameter is null or the length/size is 0<p>
- * 2. Construct an empty and mutable/immutable collection or map.
+ * As we know, many of bugs in java code are caused by null pointer,
+ * the jhelper.Empty tries to reduce the NullPointerException errors.<p>
+ * The concept of "Empty" means:<br>
+ * 1. object is null<br>
+ * 2. length of array is 0<br>
+ * 3. size of collection is 0<br>
+ * 4. length of string trims white space chars is 0<br>
+ * 5. value of a numeric is 0, 0f, 0L, 0d
  */
 public final class Empty {
 	
+	public static boolean zero(Number arg) {
+		if(arg == null) return true;
+		return arg.doubleValue() == 0;
+	}
+	
 	public static boolean is(Object arg) {
 		return arg == null;
+	}
+	
+	/**
+	 *@return If the parameter arg is null, returns the orElseOne. Otherwise the arg is returned directly
+	 */
+	public static Object is(Object arg, Object orElseOne) {
+		return arg != null ? arg : orElseOne;
+	}
+	
+	/**
+	 * @return Returns true if any one in the array is null.<p>
+	 * It equals the following code:<br>
+	 * if(arg1 == null || arg2 == null || arg3 == null) {do something}
+	 */
+	public static boolean oneOf(Object... args) {
+		if(args == null) return true;
+		if(args.length == 0) return true;
+		for(var arg : args) {
+			if(arg == null) return true;
+		}
+		return false;
+	}
+	
+	/**
+	 *@return Return true if all items in the array are null.<p>
+	 *It equals the following code:<br> 
+	 *if(arg1 == null && arg2 == null && arg3 == null){do something}
+	 */
+	public static boolean allOf(Object... args) {
+		if(args == null) return true;
+		if(args.length == 0) return true;
+		for(var arg : args) {
+			if(arg != null) return false;
+		}
+		return true;
 	}
 	
 	public static boolean is(String arg) {
