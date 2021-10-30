@@ -12,7 +12,7 @@ jhelper的设计目标是Simple, Stable, Smart.
 jhelper中，绝大多数类名都是以er/or结尾的，它们都是您的工具人。简单、稳定、好用，是一个工具人的基本修养。
 
 ### JDK版本
-JAVA 10+, 最好是Java 11；不支持JAVA 8。
+Java 10+, 最好是Java 11；不支持Java 8及以下版本。
 
 ### 功能
 | # | 类名      | 用途                                                                                          |
