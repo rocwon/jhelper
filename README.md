@@ -15,7 +15,7 @@ jhelper中，绝大多数类名都是以er/or结尾的，它们都是您的工�
 | # | 类名      | 用途                                                                                          |
 |---|-----------|---------                                                                                         |
 | 1 | Empty     | 提供了一组is静态方法，判断各种类型的数组、集合、对象是否为null或empty                                          |
-| 2 | Codec     | 依赖于JACKSON, 提供了一组静态to*方法和decode*方法，对Base64, JSONheMSGPACK进行编解码                     |
+| 2 | Codec     | 依赖于JACKSON, 提供了一组静态to方法和decode方法，对Base64, JSON和MSGPACK进行编解码                     |
 | 3 | Concator  | 提供了一组concat静态方法，将两个数组/集合或者多个字符串合并起来                                           |
 | 4 | Converter | 提供了一组to*静态方法，用于数据类型之间的转换                                                            |
 | 5 | Cryptor   | 提供了一组静态方法，支持Hash，对称加密以及签名操作                                                                      |
