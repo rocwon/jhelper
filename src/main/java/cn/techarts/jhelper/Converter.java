@@ -143,7 +143,7 @@ public final class Converter {
 		}
 	}
 	
-	//---------------------Bits-----------------------------------
+	//---------------------Bit Manipulation-----------------------------------
 	
 	
 	public static long toLong(byte[] bytes) {
