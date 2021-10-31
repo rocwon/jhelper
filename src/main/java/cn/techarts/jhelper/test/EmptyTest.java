@@ -75,4 +75,14 @@ public class EmptyTest {
 		TestCase.assertEquals(false, Empty.allOf(book1, book2, null));
 		TestCase.assertEquals(true, Empty.is(null, book2) != null);
 	}
+	
+	@Test
+	public void testTrim() {
+		String arg = null;
+		TestCase.assertEquals(null, Empty.trim(arg));
+		
+		arg = " abcdefg ";
+		TestCase.assertEquals('a', Empty.trim(arg).charAt(0));
+		
+	}
 }
