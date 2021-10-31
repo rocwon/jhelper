@@ -9,10 +9,16 @@ jhelper的设计目标是Simple, Stable, Smart.
 - Stable 稳定是对Library的基本要求，谁的生活都不容易，不要给别人制造Bug
 - Smart  简洁且语义化的API，没有学习成本，让用户不看文档也能用起来
 
-jhelper中，绝大多数类名都是以er/or结尾的，它们都是您的工具人。简单、稳定、好用，是一个工具人的基本修养。
+jhelper中，绝大多数类名都是以er/or结尾的，它们都是您的工具人。简单、稳定、好用，是一个工具人的基本修养。正如您所见，jhelper与常见的套路不同，
+没有StringUtils、CollectionUtils这样的东西，而是以“行为”为主题组织API，想编解码就用Codec，想查找就用Finder，想排序就用Sorter。
 
 ### JDK版本
-Java 10+, 最好是Java 11；不支持Java 8及以下版本。
+Java 10+, 最好是Java 11；不支持Java 8及以下版本。我们强烈建议开发者与时俱进，升级到Java 11 LTS。
+
+### 第三方依赖
+jhelper以尽量不依赖第三方为开发原则。但有一些久经考验的、优秀的第三方库，真的值得采用。
+- 如果您要用到Codec，则需要在您的项目中引入jackson、msgpack
+- 如果您要用到Persister，则需要在您的项目中引入Apache-DbUtils和HikariCP
 
 ### 功能
 | # | 类名      | 用途                                                                                          |
