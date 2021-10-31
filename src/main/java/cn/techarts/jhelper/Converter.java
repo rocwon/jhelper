@@ -145,33 +145,6 @@ public final class Converter {
 	
 	//---------------------Bit Manipulation-----------------------------------
 	
-	
-	public static long toLong(byte[] bytes) {
-		if(bytes == null) return 0l;
-		if(bytes.length != 8) return 0l;
-		return  (bytes[7] & 0xFF) |
-		        (bytes[6] & 0xFF) << 8 |
-		        (bytes[5] & 0xFF) << 16 |
-		        (bytes[4] & 0xFF) << 24 |
-		        (bytes[3] & 0xFF) << 32 |
-		        (bytes[2] & 0xFF) << 40 |
-		        (bytes[1] & 0xFF) << 48 |
-		        (bytes[0] & 0xFF) << 56;
-	}
-	
-	public static long toLongLE(byte[] bytes) {
-		if(bytes == null) return 0l;
-		if(bytes.length != 8) return 0l;
-		return  (bytes[0] & 0xFF) |
-		        (bytes[1] & 0xFF) << 8 |
-		        (bytes[2] & 0xFF) << 16 |
-		        (bytes[3] & 0xFF) << 24 |
-		        (bytes[4] & 0xFF) << 32 |
-		        (bytes[5] & 0xFF) << 40 |
-		        (bytes[6] & 0xFF) << 48 |
-		        (bytes[7] & 0xFF) << 56;
-	}
-	
 	public static int toInt(byte[] bytes) {
 		if(bytes == null) return 0;
 		if(bytes.length != 4) return 0;
@@ -211,7 +184,7 @@ public final class Converter {
 	 * For example:<p>
 	 * 0x4b -> 01001011 ->{true, true, false, true, false, false, true, false} 
 	 */
-	public static boolean[] toBool(byte arg) {
+	public static boolean[] toBooleans(byte arg) {
 		var result = new boolean[8];
 		for(int i = 0; i < 8; i++) {
 			var b = (arg >> i) & 0x01;
