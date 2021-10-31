@@ -6,6 +6,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 	ChineseTest.class,
+	ConcatorTest.class,
 	CodecTest.class,
 	ConverterTest.class,
 	EmptyTest.class,
