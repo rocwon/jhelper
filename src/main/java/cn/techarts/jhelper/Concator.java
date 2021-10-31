@@ -1,5 +1,6 @@
 package cn.techarts.jhelper;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -15,93 +16,48 @@ import java.util.Set;
 public final class Concator {
 	
 	public static int[] concat(int[] array1, int[] array2) {
-		if(array1 == null) return array2;
-		if(array2 == null) return array1;
-		int length1 = array1.length;
-		int length2 = array2.length;
-		int[] result = new int[length1 + length2];
-		concatArrays(array1, length1, array2, length2, result);
-		return result;
+		var result = concat(array1, array2, int.class);
+		return result != null ? (int[])result : new int[0];
 	}
 	
 	public static float[] concat(float[] array1, float[] array2) {
-		if(array1 == null) return array2;
-		if(array2 == null) return array1;
-		int length1 = array1.length;
-		int length2 = array2.length;
-		float[] result = new float[length1 + length2];
-		concatArrays(array1, length1, array2, length2, result);
-		return result;
+		var result = concat(array1, array2, float.class);
+		return result != null ? (float[])result : new float[0];
 	}
 	
 	public static long[] concat(long[] array1, long[] array2) {
-		if(array1 == null) return array2;
-		if(array2 == null) return array1;
-		int length1 = array1.length;
-		int length2 = array2.length;
-		var result = new long[length1 + length2];
-		concatArrays(array1, length1, array2, length2, result);
-		return result;
+		var result = concat(array1, array2, long.class);
+		return result != null ? (long[])result : new long[0];
 	}
 	
 	public static double[] concat(double[] array1, double[] array2) {
-		if(array1 == null) return array2;
-		if(array2 == null) return array1;
-		int length1 = array1.length;
-		int length2 = array2.length;
-		var result = new double[length1 + length2];
-		concatArrays(array1, length1, array2, length2, result);
-		return result;
+		var result = concat(array1, array2, double.class);
+		return result != null ? (double[])result : new double[0];
 	}
 	
 	public static String[] concat(String[] array1, String[] array2) {
-		if(array1 == null) return array2;
-		if(array2 == null) return array1;
-		int length1 = array1.length;
-		int length2 = array2.length;
-		var result = new String[length1 + length2];
-		concatArrays(array1, length1, array2, length2, result);
-		return result;
+		var result = concat(array1, array2, String.class);
+		return result != null ? (String[])result : new String[0];
 	}
 	
 	public static Object[] concat(Object[] array1, Object[] array2) {
-		if(array1 == null) return array2;
-		if(array2 == null) return array1;
-		int length1 = array1.length;
-		int length2 = array2.length;
-		var result = new Object[length1 + length2];
-		concatArrays(array1, length1, array2, length2, result);
-		return result;
+		var result = concat(array1, array2, Object.class);
+		return result != null ? (Object[])result : new Object[0];
 	}
 	
 	public static boolean[] concat(boolean[] array1, boolean[] array2) {
-		if(array1 == null) return array2;
-		if(array2 == null) return array1;
-		int length1 = array1.length;
-		int length2 = array2.length;
-		var result = new boolean[length1 + length2];
-		concatArrays(array1, length1, array2, length2, result);
-		return result;
+		var result = concat(array1, array2, boolean.class);
+		return result != null ? (boolean[])result : new boolean[0];
 	}
 	
 	public static byte[] concat(byte[] array1, byte[] array2) {
-		if(array1 == null) return array2;
-		if(array2 == null) return array1;
-		int length1 = array1.length;
-		int length2 = array2.length;
-		var result = new byte[length1 + length2];
-		concatArrays(array1, length1, array2, length2, result);
-		return result;
+		var result = concat(array1, array2, byte.class);
+		return result != null ? (byte[])result : new byte[0];
 	}
 	
 	public static char[] concat(char[] array1, char[] array2) {
-		if(array1 == null) return array2;
-		if(array2 == null) return array1;
-		int length1 = array1.length;
-		int length2 = array2.length;
-		var result = new char[length1 + length2];
-		concatArrays(array1, length1, array2, length2, result);
-		return result;
+		var result = concat(array1, array2, char.class);
+		return result != null ? (char[])result : new char[0];
 	}
 	
 	public static String concat(String... args) {
@@ -148,8 +104,19 @@ public final class Concator {
 		return result;
 	}
 	
-	private static void concatArrays(Object array1, int length1, Object array2, int length2, Object result) {
-		System.arraycopy(array1, 0, result, 0, length1);
-		System.arraycopy(array2, 0, result, length1, length2);
+	/**
+	 * @param The element / component type in the array
+	 */
+	private static Object concat(Object array1, Object array2, Class<?> clazz) {
+		if(array1 == null) return array2;
+		if(array2 == null) return array1;
+		int len1 = Array.getLength(array1);
+		int len2 = Array.getLength(array2);
+		int resultLength = len1 + len2;
+		if(resultLength == 0) return null; //Without elements
+		var result = Array.newInstance(clazz, resultLength);
+		System.arraycopy(array1, 0, result, 0, len1);
+		System.arraycopy(array2, 0, result, len1, len2);
+		return result;
 	}
 }
