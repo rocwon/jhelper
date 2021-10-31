@@ -20,6 +20,10 @@ import java.util.Set;
  */
 public final class Empty {
 	
+	
+	/**
+	 * @return Returns true if the value of input parameter is 0, 0f, 0l or 0d 
+	 */
 	public static boolean zero(Number arg) {
 		if(arg == null) return true;
 		return arg.doubleValue() == 0;
@@ -63,6 +67,8 @@ public final class Empty {
 		}
 		return true;
 	}
+	
+	//----------------------------------------------------------------------------------------
 	
 	public static boolean is(String arg) {
 		return arg == null || "".equals(arg.trim());
@@ -121,6 +127,8 @@ public final class Empty {
 		return (arg == null || arg.isEmpty());
 	}
 	
+	//----------------------------------------------------------------------------------------
+	
 	public static<T> List<T> list(){
 		return new ArrayList<T>();
 	}
@@ -143,5 +151,11 @@ public final class Empty {
 	
 	public static<K, V> Map<K, V> immutableMap(){
 		return Map.of();
+	}
+	
+	//-------------------------------------------------------------------------------------------
+	
+	public static String trim(String arg) {
+		return arg != null ? arg.trim() : null;
 	}
 }
