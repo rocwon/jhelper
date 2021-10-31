@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * Convert the specific type to another. For an incorrect input parameter,<p>
  * 1. returns 0 or 0.0 if the target type is a numeric, or<br>
- * 2. returns null if the target type is a date. 
+ * 2. returns null if the target type is a date string. 
  */
 public final class Converter {
 	public static int toInt( String arg){
