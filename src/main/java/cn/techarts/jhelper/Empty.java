@@ -71,7 +71,7 @@ public final class Empty {
 	//----------------------------------------------------------------------------------------
 	
 	public static boolean is(String arg) {
-		return arg == null || "".equals(arg.trim());
+		return arg == null || arg.trim().length() == 0;
 	}
 	
 	public static boolean is(Object[] objs) {
