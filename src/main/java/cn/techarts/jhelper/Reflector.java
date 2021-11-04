@@ -32,6 +32,19 @@ public final class Reflector {
 		}
 	}
 	
+	public static Object getValue(Object obj, String field) {
+		if(obj == null || Empty.is(field)) return null;
+		var method = toMethodName("get", field);
+		try {
+			var raw = obj.getClass();
+			var getter = raw.getMethod(method);
+			if(getter == null) return null;
+			return getter.invoke(obj);
+		}catch(Exception e) {
+			throw new RuntimeException("Failed to get value.", e);
+		}
+	}
+	
 	//----------------------------------------------------------------
 	
 	public static int getInt(Object obj, String field) {
