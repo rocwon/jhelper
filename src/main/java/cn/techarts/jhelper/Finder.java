@@ -47,6 +47,9 @@ public final class Finder {
 		return Arrays.binarySearch(arg, target);
 	}
 	
+	/**
+	  * The method is a wrapper of {@link String.indexOf}
+	  */
 	public static int find(String arg, String target) {
 		if(Empty.is(arg) || Empty.is(target)) return -1;
 		return arg.indexOf(target); //The start index
@@ -76,4 +79,26 @@ public final class Finder {
 		if(Empty.is(arg) || target == null) return false;
 		return arg.contains(target); //
 	}
+	
+	/*
+	  * @return Count the times of the given word in the specified text
+	  */
+	 public static int times(String text, String word) {
+		 if(Empty.is(text) || Empty.is(word)) return 0;
+		 var result = 0; //How many times the word matched
+		 var key = word.toCharArray();
+		 var src = text.toCharArray();
+		 int len = src.length, keyLen = key.length;
+		 for(int i = 0; i < len; i++) {
+			 if(src[i] != key[0]) continue;
+			 for(int j = 1; j < keyLen; j++) {
+				 if(src[i + j] != key[j]) {
+					 i += j;
+					 break; 
+				 }    
+			 }
+			 result += 1;
+		 }
+		 return result;
+	 }
 }
