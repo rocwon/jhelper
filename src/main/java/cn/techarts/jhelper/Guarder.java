@@ -73,8 +73,7 @@ public final class Guarder {
 	@Deprecated
 	public static String[] getVerificationCode(int length, int w, int h) {
 		return getCaptchaCode(length, w, h);
-	}
-	
+	}	
 	
 	private static String drawVerifyCode(Graphics g, Random random, int length){
 		var result = new StringBuilder(length);
