@@ -32,7 +32,7 @@ public final class Guarder {
 	 *@return A string array of the code and picture(base64), e.g.<p>
 	 *["1324", "data:image/png;base64,picture-base64-string"] 
 	 */
-	public static String[] getVerificationCode(int length, int w, int h) {
+	public static String[] getCaptchaCode(int length, int w, int h) {
 		var random = new Random();  
 		var type = BufferedImage.TYPE_INT_RGB;
 		var image = new BufferedImage(w, h, type);     
@@ -55,9 +55,26 @@ public final class Guarder {
 	 * Returns the code and picture using default parameters:<p>
 	 * length = 4, width = 60, height = 20
 	 */
-	public static String[] getVerificationCode() {
-		return getVerificationCode(4, 60, 20);
+	public static String[] getCaptchaCode() {
+		return getCaptchaCode(4, 60, 20);
 	}
+	
+	/**
+	 * Please call the method {@link getCaptchaCode}
+	 */
+	@Deprecated
+	public static String[] getVerificationCode() {
+		return getCaptchaCode(4, 60, 20);
+	}
+	
+	/**
+	 * Please call the method {@link getCaptchaCode} with 3 parameters
+	 */
+	@Deprecated
+	public static String[] getVerificationCode(int length, int w, int h) {
+		return getCaptchaCode(length, w, h);
+	}
+	
 	
 	private static String drawVerifyCode(Graphics g, Random random, int length){
 		var result = new StringBuilder(length);
