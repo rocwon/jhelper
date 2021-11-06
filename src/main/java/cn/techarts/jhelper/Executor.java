@@ -16,6 +16,10 @@ public class Executor {
 		asyncModeEnabled = true;
 	}
 	
+	public static boolean isAsyncMode() {
+		return asyncModeEnabled;
+	}
+	
 	public static void execute(Runnable task, Runnable resultHandler) {
 		if(!asyncModeEnabled) {
 			task.run(); 
