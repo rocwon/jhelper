@@ -101,4 +101,16 @@ public final class Codec {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	//-----------------------------BCD(8421)----------------------------------------------------
+	
+	@Deprecated
+	public int decodeBCD(byte[] bytes) {
+		return 0;
+	}
+	
+	@Deprecated
+	public byte[] toBCD(int arg) {
+		return null;
+	}
 }

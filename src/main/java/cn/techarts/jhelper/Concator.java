@@ -116,7 +116,7 @@ public final class Concator {
 	
 	/**
 	 * @return Returns a string like "%Good Morning%" using in SQL select statement. For example:<p>
-	 * select * from user where name like '%Zzhang san%'
+	 * select * from user where name like '%Zhang san%'
 	 */
 	public static String queryString(String key) {
 		if(Empty.is(key)) return null;

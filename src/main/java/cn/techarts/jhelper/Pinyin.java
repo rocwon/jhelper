@@ -3,7 +3,9 @@ package cn.techarts.jhelper;
 import java.io.UnsupportedEncodingException;
 
 /**
- * GB2312 CHAR-SET IS SUPPORTED ONLY
+ * <h3>Only GB2312 CHAR-SET is supported. </h3>
+ * The class is very light-weight. it doesn't dependent on any Chinese dictionary.
+ * A few Chinese characters can't be recognized because it's out of GB2312 char-set.
  */
 public class Pinyin {
 	private final static int[] SP_BOUNDARIES = { 1601, 1637, 1833, 2078, 2274,
