@@ -1,7 +1,9 @@
 package cn.techarts.jhelper;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public final class Reflector {
@@ -84,6 +86,34 @@ public final class Reflector {
 	
 	public static String getString(Object obj, String field) {
 		return getValue(obj, field, String.class);
+	}
+	
+	/**
+	 * Extracts a field which value is an integer from series objects
+	 * @return An integer list contains all values of the specified field in the collection.
+	 */
+	public static List<Integer> getInts(Collection<? extends Object> objs, String intField){
+		if(Empty.is(objs) || Empty.is(intField)) return List.of();
+		var result = new ArrayList<Integer>(32);
+		for(var obj : objs) {
+			if(obj == null) continue;
+			result.add(getValue(obj, intField, int.class));
+		}
+		return result;
+	}
+	
+	/**
+	 * Extracts a field which value is the specified type(t) from series objects
+	 * @return An object list contains all values of the specified field in the collection.
+	 */
+	public static<T> List<T> getValues(Collection<T> objs, String field, Class<T> t){
+		if(Empty.is(objs) || Empty.is(field)) return List.of();
+		var result = new ArrayList<T>(32);
+		for(var obj : objs) {
+			if(obj == null) continue;
+			result.add(getValue(obj, field, t));
+		}
+		return result;
 	}
 	
 	//------------------------------------------------------------------------------
