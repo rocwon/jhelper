@@ -80,6 +80,16 @@ public final class Concator {
 		return result.toString();
 	}
 	
+	public static String concat(List<Integer> args) {
+		if(args == null || args.isEmpty()) return "";
+		var result = new StringBuilder(64);
+		for(var arg : args) {
+			if(arg == null) continue;
+			result.append(Integer.toString(arg));
+		}
+		return result.toString();
+	}
+	
 	public static<T> List<T> concat(List<T> arg0, List<T> arg1){
 		if(Empty.is(arg0)) return arg1;
 		if(Empty.is(arg1)) return arg0;
@@ -102,6 +112,15 @@ public final class Concator {
 		var result = new HashMap<K, V>(arg0); 
 		result.putAll(arg1);
 		return result;
+	}
+	
+	/**
+	 * @return Returns a string like "%Good Morning%" using in SQL select statement. For example:<p>
+	 * select * from user where name like '%Zzhang san%'
+	 */
+	public static String queryString(String key) {
+		if(Empty.is(key)) return null;
+		return "%".concat(key).concat("%");
 	}
 	
 	/**
