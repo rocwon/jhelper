@@ -60,6 +60,9 @@ public final class Concator {
 		return result != null ? (char[])result : new char[0];
 	}
 	
+	/**
+	 *@return Returns a string same to {@link String.concat} 
+	 */
 	public static String concat(String... args) {
 		if(args == null || args.length == 0) return "";
 		var result = new StringBuilder(64);
@@ -70,26 +73,84 @@ public final class Concator {
 		return result.toString();
 	}
 	
-	public static String concat(Collection<String> args) {
-		if(args == null || args.isEmpty()) return "";
-		var result = new StringBuilder(64);
-		for(var arg : args) {
-			if(arg == null) continue;
-			result.append(arg);
-		}
-		return result.toString();
-	}
 	
-	public static String concat(List<Integer> args) {
-		if(args == null || args.isEmpty()) return "";
-		var result = new StringBuilder(64);
-		for(var arg : args) {
-			if(arg == null) continue;
-			result.append(Integer.toString(arg));
-		}
-		return result.toString();
+	 /**
+	  * @return Returns a string that contains all elements in the INT array and separates with the given separator.<p>
+	  * For example: [1, 2, 3, 4, 5] --> "1,2,3,4,5" (We suppose the separator is ',')
+	  */
+	 public static String concat(char separator, int... args) {
+		 if(Empty.is(args)) return "";
+		 var result = new StringBuilder(64);
+		 for(var arg : args) {
+			 result.append(separator);
+			 result.append(arg);
+		 }
+		 if(result.length() == 0) return "";
+		 return result.deleteCharAt(0).toString();
+	 }
+	 
+	 /**
+	  * @return Returns a string that contains all elements in the int array and separates with the given separator.<p>
+	  * For example: ["ab", "cd", "ef", "g", "mn"] --> "ab,cd,ef,g,mn" (We suppose the separator is ',')
+	  */
+	 public static String concat(char separator, String... args) {
+		 if(Empty.is(args)) return "";
+		 var result = new StringBuilder(64);
+		 for(var arg : args) {
+			 if(Empty.is(arg)) continue;
+			 result.append(separator);
+			 result.append(arg);
+		 }
+		 if(result.length() == 0) return "";
+		 return result.deleteCharAt(0).toString();
+	 }
+	 
+	 /**
+	  * @return Returns a string that concats all items in the list and separates with ','<p>
+	  * For example: [1, 2, 3, 4, 5] --> "1,2,3,4,5".
+	  */
+	 public static String concat(List<Integer> args) {
+		 return concat(args, ',');
+	 }
+	 
+	 /**
+	  * @return Returns a string that concats all items in the list and separates with the given separator.<p>
+	  * For example: [1, 2, 3, 4, 5] --> "1,2,3,4,5".
+	  */
+	 public static String concat(List<Integer> args, char separator) {
+		 if(Empty.is(args)) return "";
+		 var result = new StringBuilder("");
+		 for(var arg : args) {
+		 	if(arg == null) continue;
+		 	result.append(separator);
+		 	result.append(arg);
+		 }
+		 return result.deleteCharAt(0).toString();
 	}
-	
+	 
+	 /**
+	  * @return Returns a string that concats all items in the collection and separates with ','<p>
+	  * For example: ["ab", "cd", "ef", "g", "mn"] --> "ab,cd,ef,g,mn".
+	  */
+	 public static String concat(Collection<String> args) {
+		 return concat(args, ',');
+	 }
+	 
+	 /**
+	  * @return Returns a string that concats all items in the collection and separates with the given separator.<p>
+	  * For example: ["ab", "cd", "ef", "g", "mn"] --> "ab,cd,ef,g,mn" (We suppose the separator is ',')
+	  */
+	 public static String concat(Collection<String> args, char separator) {
+		 if(Empty.is(args)) return "";
+		 var result = new StringBuilder(64);
+		 for(var arg : args) {
+		 	if(arg == null) continue;
+		 	result.append(separator);
+		 	result.append(arg);
+		 }
+		 return result.deleteCharAt(0).toString();
+	}
+		
 	public static<T> List<T> concat(List<T> arg0, List<T> arg1){
 		if(Empty.is(arg0)) return arg1;
 		if(Empty.is(arg1)) return arg0;
