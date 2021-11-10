@@ -98,7 +98,7 @@ public final class Reflector {
 		var result = new ArrayList<Integer>(32);
 		for(var obj : objs) {
 			if(obj == null) continue;
-			result.add(getValue(obj, intField, int.class));
+			result.add(getValue(obj, intField, Integer.class));
 		}
 		return result;
 	}
@@ -114,8 +114,8 @@ public final class Reflector {
 		var result = new ArrayList<String>(32);
 		for(var obj : objs) {
 			if(obj == null) continue;
-			var val = getValue(obj, intField, int.class);
-			result.add(Integer.toString(val));
+			var val = getValue(obj, intField, Integer.class);
+			result.add(Integer.toString(val.intValue()));
 		}
 		return result;
 	}
@@ -124,7 +124,7 @@ public final class Reflector {
 	 * Extracts a field which value is the specified type(t) from series objects
 	 * @return An object list contains all values of the specified field in the collection.
 	 */
-	public static<T> List<T> getValues(Collection<T> objs, String field, Class<T> t){
+	public static<T> List<T> getValues(Collection<? extends Object> objs, String field, Class<T> t){
 		if(Empty.is(objs) || Empty.is(field)) return List.of();
 		var result = new ArrayList<T>(32);
 		for(var obj : objs) {
