@@ -91,6 +91,7 @@ public final class Reflector {
 	/**
 	 * Extracts a field which value is an integer from series objects
 	 * @return An integer list contains all values of the specified field in the collection.
+	 *  @see List<String> getStrings(String intField, Collection<? extends Object> objs)
 	 */
 	public static List<Integer> getInts(Collection<? extends Object> objs, String intField){
 		if(Empty.is(objs) || Empty.is(intField)) return List.of();
@@ -98,6 +99,23 @@ public final class Reflector {
 		for(var obj : objs) {
 			if(obj == null) continue;
 			result.add(getValue(obj, intField, int.class));
+		}
+		return result;
+	}
+	
+	/**
+	 * Extracts a field which value is an integer from series objects. The method will
+	 * cast the integer value to a string.
+	 * @return A string list contains all values of the specified field in the collection.
+	 * @see List<Integer> getInts(Collection<? extends Object> objs, String intField)
+	 */
+	public static List<String> getInts(String intField, Collection<? extends Object> objs){
+		if(Empty.is(objs) || Empty.is(intField)) return List.of();
+		var result = new ArrayList<String>(32);
+		for(var obj : objs) {
+			if(obj == null) continue;
+			var val = getValue(obj, intField, int.class);
+			result.add(Integer.toString(val));
 		}
 		return result;
 	}
