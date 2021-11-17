@@ -75,7 +75,8 @@ public final class Converter {
 	
 	public static boolean toBoolean(String arg) {
 		if(Empty.is(arg)) return false;
-		return arg.trim().equalsIgnoreCase("true");
+		var val = arg.trim().toLowerCase();
+		return val.equals("1") || val.equals("true");
 	}
 	
 	public static String toString(int arg) {

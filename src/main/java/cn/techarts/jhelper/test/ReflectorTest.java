@@ -1,5 +1,6 @@
 package cn.techarts.jhelper.test;
 
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
@@ -35,5 +36,13 @@ public class ReflectorTest {
 		var result = new Book();
 		Reflector.fill(result, map);
 		TestCase.assertEquals("ISBN-191-077", result.getIsbn());
+	}
+	
+	@Test
+	public void testGetObjects() {
+		var src = List.of(new Book(1), new Book(2), new Book(3), new Book(4), new Book(5));
+		TestCase.assertEquals("3", Reflector.getInts("id", src).get(2));
+		TestCase.assertEquals(Integer.valueOf(3), Reflector.getInts(src, "id").get(2));
+		TestCase.assertEquals(Integer.valueOf(3), Reflector.getValues(src, "id", Integer.class).get(2));
 	}
 }
