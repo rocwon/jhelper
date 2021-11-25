@@ -81,7 +81,7 @@ Empty类提供了一组静态方法，它们的作用包括：
 | 20   | static<T> Set<T> set()                         | 返回一个长度为0的HashSet对象，支持泛型                       |
 | 21   | static<T> Set<T> immutableSet()                | 返回一个长度为0的只读的HashSet对象，不可修改，支持泛型       |
 | 22   | static<K, V> Map<K, V> map()                   | 返回一个长度为0的HashMap对象，支持泛型                       |
-| 23   | public static<K, V> Map<K, V> immutableMap()   | 返回一个长度为0的只读的HashMap对象，不可修改，支持泛型       |
+| 23   | static<K, V> Map<K, V> immutableMap()          | 返回一个长度为0的只读的HashMap对象，不可修改，支持泛型       |
 | 24   | static String trim(String arg)                 | 删除字符串参数arg左右的空白字符                              |
 
 ### 2. Concator
@@ -96,7 +96,7 @@ Concator类提供了一系列concat静态方法，可以将两个相同类型的
 | 2    | static float[] concat(float[] array1, float[] array2)        | 将两个float数组合并起来返回一个新的int数组。如果二者都为null，则返回null |
 | 3    | static long[] concat(long[] array1, long[] array2)           | 将两个long数组合并起来返回一个新的int数组。如果二者都为null，则返回null |
 | 4    | static double[] concat(double[] array1, double[] array2)     | 将两个double数组合并起来返回一个新的int数组。如果二者都为null，则返回null |
-| 5    | public static String[] concat(String[] array1, String[] array2) | 将两个String数组合并起来返回一个新的int数组。如果二者都为null，则返回null |
+| 5    | static String[] concat(String[] array1, String[] array2)     | 将两个String数组合并起来返回一个新的int数组。如果二者都为null，则返回null |
 | 6    | static Object[] concat(Object[] array1, Object[] array2)     | 将两个Object数组合并起来返回一个新的int数组。如果二者都为null，则返回null |
 | 7    | static boolean[] concat(boolean[] array1, boolean[] array2)  | 将两个boolean数组合并起来返回一个新的int数组。如果二者都为null，则返回null |
 | 8    | static byte[] concat(byte[] array1, byte[] array2)           | 将两个byte数组合并起来返回一个新的int数组。如果二者都为null，则返回null |
@@ -108,7 +108,7 @@ Concator类提供了一系列concat静态方法，可以将两个相同类型的
 | 14   | static<K, V> Map<K, V> concat(Map<K, V> arg0, Map<K, V> arg1) | 将两个Map的元素合并起来，arg0中相同的key会被替代为arg1中对应的值 |
 
 ### 3. Converter
-Converter类用于对相关数据类型进行转换，包含四类常见的：
+Converter类用于对相关数据类型进行转换，包含五类常用的：
 - 数字和字符串之间的转换
 - 位操作时整数与字节数组之间的转换
 - Java Bean(POJO)与Map之间的转换

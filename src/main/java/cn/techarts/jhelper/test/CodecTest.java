@@ -1,5 +1,7 @@
 package cn.techarts.jhelper.test;
 
+import java.io.UnsupportedEncodingException;
+
 import org.junit.Test;
 
 import cn.techarts.jhelper.Codec;

@@ -69,10 +69,16 @@ public final class Converter {
 		}
 	}
 	
+	/**
+	 * A C-like style
+	 */
 	public static boolean toBoolean(int arg) {
 		return arg != 0; //C-like style
 	}
 	
+	/**
+	 * @return Returns true if the parameter equals "1" or "true"
+	 */
 	public static boolean toBoolean(String arg) {
 		if(Empty.is(arg)) return false;
 		var val = arg.trim().toLowerCase();

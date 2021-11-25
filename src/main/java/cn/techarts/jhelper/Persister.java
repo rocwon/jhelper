@@ -17,10 +17,14 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 /**
- * A lightweight utility that's designed to access database 
- * that based on APACHE DBUTILS and HIKARI connection pool.<p>
+ * A lightweight utility that's designed to access database.<br> 
+ * It's based on APACHE DBUTILS and HIKARI connection pool.<p>
  * 
- * The placeholder in SQL is compatible to MyBatis (<b>#{}</b>)
+ * Persister supports 3 ways as bellow: <br>
+ * 1. Raw JDBC style: {@link getDataSource}, {@link getConnection}<br>
+ * 2. Apache DbUtils style: 
+ *    {@link update}, {@link get}, {@link getAll} and {@link getQueryRunner}<br>
+ * 3. Name-parameter style: The placeholder in SQL is compatible to MyBatis 
  */
 public final class Persister {
 	private HikariDataSource dataSource = null;
