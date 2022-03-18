@@ -80,9 +80,9 @@ public final class Finder {
 		return arg.contains(target); //
 	}
 	
-	/*
-	  * @return Count the times of the given word in the specified text
-	  */
+	/**
+	 * Count the times of the given word in the specified text
+	 */
 	 public static int times(String text, String word) {
 		 if(Empty.is(text) || Empty.is(word)) return 0;
 		 var result = 0; //How many times the word matched
