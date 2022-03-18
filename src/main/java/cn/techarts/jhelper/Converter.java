@@ -51,6 +51,12 @@ public final class Converter {
 		}
 	}
 	
+	public static double toDouble(byte[] bytes){
+		if(Empty.is(bytes)) return 0d;
+		var longBits = toLong(bytes);
+		return Double.longBitsToDouble(longBits);
+	}
+	
 	public static long toLong( String arg){
 		if(Empty.is(arg)) return 0L;
 		try{ 
@@ -60,13 +66,19 @@ public final class Converter {
 		}
 	}
 	
-	public static float toFloat( String arg){
+	public static float toFloat(String arg){
 		if(Empty.is(arg)) return 0f;
 		try{ 
 			return Float.parseFloat(arg);
 		}catch( NumberFormatException e){ 
 			return 0f;
 		}
+	}
+	
+	public static float toFloat(byte[] bytes){
+		if(Empty.is(bytes)) return 0f;
+		var intBits = toInt(bytes);
+		return Float.intBitsToFloat(intBits);
 	}
 	
 	/**
@@ -185,6 +197,30 @@ public final class Converter {
 	            (bytes[3] & 0xFF) << 24;
 	}
 	
+	public static long toLong(byte[] bytes) {
+		var result = 0L;
+		if(bytes == null) return result;
+		if(bytes.length != 8) return result;
+		for(int i = 0; i < 8; i++) {
+			result <<= 8; 
+			result |= (bytes[i] & 0xff);
+		}
+		return result;
+	}
+	
+	public static long toLongLE(byte[] bytes) {
+		if(bytes == null) return 0L;
+		if(bytes.length != 8) return 0L;
+		return 	(bytes[0] & 0xFF)       |
+		        (bytes[1] & 0xFF) << 8  |
+		        (bytes[2] & 0xFF) << 16 |
+		        (bytes[3] & 0xFF) << 24 |
+		        (bytes[4] & 0xFF) << 32 |
+	            (bytes[5] & 0xFF) << 40 |
+	            (bytes[6] & 0xFF) << 48 |
+	            (bytes[7] & 0xFF) << 56;
+	}
+	
 	public static short toShort(byte[] bytes) {
 		if(bytes == null) return 0;
 		if(bytes.length != 2) return 0;
@@ -216,15 +252,11 @@ public final class Converter {
 	}
 	
 	public static byte[] toBytes(long val) {
-		var result = new byte[8];
-		result[0] = (byte)(val >> 56);
-		result[1] = (byte)(val >> 48);
-		result[2] = (byte)(val >> 40);
-		result[3] = (byte)(val >> 32);
-		result[4] = (byte)(val >> 24);
-		result[5] = (byte)(val >> 16);
-		result[6] = (byte)(val >> 8);
-		result[7] = (byte)val;
+		byte[] result = new byte[8];      
+		for (int i = 0; i < 8; i++) {             
+			int offset = 64 - (i + 1) * 8;
+			result[i] = (byte)((val >> offset) & 0xff);
+		}
 		return result;
 	}
 	

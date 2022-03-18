@@ -22,6 +22,17 @@ public final class Time {
 		return new Date();
 	}
 	
+	/**
+	 *@return Returns a long number from 1970-0-01 00:00:00 
+	 */
+	public static long ts(boolean hd) {
+		if(hd) {
+			return System.nanoTime() / 1000000L;
+		}else {
+			return System.currentTimeMillis();
+		}
+	}
+	
 	public static String timestamp() {
 		return String.valueOf(System.currentTimeMillis());
 	}
@@ -51,6 +62,20 @@ public final class Time {
 	
 	public static int quarter(Date date) {
 		return getQuarter(date);
+	}
+	
+	/**
+	 *@return Returns an array representing [year, month, day].<p>
+	 *If you want to know the month number of now:<p>
+	 * {@code int currentMonth = getDates(null)[1];}
+	 */
+	public static int[] getDates(Date date) {
+		var d = date != null ? date : now();
+		var localDate = getLocalDate(d);
+		int year = localDate.getYear();
+		int day = localDate.getDayOfMonth();
+		int month = localDate.getMonthValue();
+		return new int[] {year, month, day};
 	}
 	
 	/**
