@@ -201,10 +201,22 @@ public final class Converter {
 		var result = 0L;
 		if(bytes == null) return result;
 		if(bytes.length != 8) return result;
-		for(int i = 0; i < 8; i++) {
-			result <<= 8; 
-			result |= (bytes[i] & 0xff);
-		}
+		result <<= 8; 
+		result |= (bytes[0] & 0xff);
+		result <<= 8; 
+		result |= (bytes[1] & 0xff);
+		result <<= 8; 
+		result |= (bytes[2] & 0xff);
+		result <<= 8; 
+		result |= (bytes[3] & 0xff);
+		result <<= 8; 
+		result |= (bytes[4] & 0xff);
+		result <<= 8; 
+		result |= (bytes[5] & 0xff);
+		result <<= 8; 
+		result |= (bytes[6] & 0xff);
+		result <<= 8; 
+		result |= (bytes[7] & 0xff);
 		return result;
 	}
 	
@@ -253,10 +265,14 @@ public final class Converter {
 	
 	public static byte[] toBytes(long val) {
 		byte[] result = new byte[8];      
-		for (int i = 0; i < 8; i++) {             
-			int offset = 64 - (i + 1) * 8;
-			result[i] = (byte)((val >> offset) & 0xff);
-		}
+		result[0] = (byte)((val >> 56) & 0xff);
+		result[1] = (byte)((val >> 48) & 0xff);
+		result[2] = (byte)((val >> 40) & 0xff);
+		result[3] = (byte)((val >> 32) & 0xff);
+		result[4] = (byte)((val >> 24) & 0xff);
+		result[5] = (byte)((val >> 16) & 0xff);
+		result[6] = (byte)((val >> 8) & 0xff);
+		result[7] = (byte)(val & 0xff);
 		return result;
 	}
 	
