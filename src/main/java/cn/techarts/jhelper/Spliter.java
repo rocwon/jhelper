@@ -12,13 +12,13 @@ public final class Spliter {
 		if(Empty.is(src)) return result; 
 		char[] chars = src.toCharArray();
 		int length = chars.length, prev = 0;
-		for( int i = 0; i < length; i++){
+		for(int i = 0; i < length; i++){
 			if( chars[i] != separator)continue;
-			result.add(src.substring( prev, i));
+			result.add(src.substring(prev, i));
 			prev = i + 1;
 		}
 		if( chars[length - 1] != separator){//result.add("");
-			result.add(src.substring( prev, src.length()));
+			result.add(src.substring(prev, src.length()));
 		}
 		return result;
 	}
@@ -34,7 +34,7 @@ public final class Spliter {
 			prev = i + 1;
 		}
 		if( chars[length - 1] != separator){ 
-			String last = src.substring(prev, src.length());
+			var last = src.substring(prev, src.length());
 			result.add(Converter.toInt(last, abs));
 		}
 		return result;
