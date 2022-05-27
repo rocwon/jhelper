@@ -209,7 +209,7 @@ public final class Sorter {
 	 * 1. non-negative integer items (i >= 0) <br>
 	 * 2. the duplicate items are ignored(Just keep once).
 	 */
-	public static void sort8(int[] target) {
+	public static void sorts(int[] target) {
 		if(target == null) return;
 		int length = target.length;
 		if(length <= 1) return;
