@@ -23,6 +23,7 @@ public final class Time {
 	}
 	
 	/**
+	 * @param hd High-Definition of time stamp dependent on your OS
 	 *@return Returns a long number from 1970-0-01 00:00:00 
 	 */
 	public static long ts(boolean hd) {

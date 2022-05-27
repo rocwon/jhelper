@@ -53,4 +53,11 @@ public class ConverterTest {
 		TestCase.assertEquals(false, val3[5]);
 		
 	}
+	
+	@Test
+	public void testUnicodeConvert() {
+		var ch = 22825;
+		var bytes = Converter.toBytes(ch);
+		TestCase.assertEquals(4, bytes.length);
+	}
 }
