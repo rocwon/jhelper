@@ -203,53 +203,49 @@ public final class Sorter {
 	/**
 	 * The method uses bit-map mechanism to implement the sorting algorithm.<p>
 	 * It's not very friendly for memory consuming...but the performance(speed) 
-	 * is faster than dual-pivot sorting algorithm on huge scale data.
-	 * 
-	 * The algorithm follows the below rules:<p>
-	 * 1. non-negative integer items (i >= 0) <br>
-	 * 2. the duplicate items are ignored(Just keep once).
+	 * is faster than dual-pivot sorting algorithm on huge scale data.<p>
+	 * Important: the duplicate elements are ignored(Just keep once).
 	 */
 	public static void sorts(int[] target) {
 		if(target == null) return;
 		int length = target.length;
 		if(length <= 1) return;
-		int largest = target[0];
-		int larger = 0, offset = largest;
+		int max = target[0];
+		int larger = 0, min = max;
 		
 		for(int i = 1; i < length; i++) {
-			if(target[i] == largest) continue; 
-			
-			if(target[i] > largest){
-				larger = largest;
-				largest = target[i];
+			if(target[i] > max){
+				larger = max;
+				max = target[i];
 			}else if(target[i] > larger) {
+				if(target[i] == max) continue; 
 				larger = target[i];
-			}else if(target[i] < offset) {
-				offset = target[i];
+			}else if(target[i] < min) {
+				min = target[i];
 			}
 		}
 		
-		var distance = larger - offset;
-		var mapper = new byte[(distance >> 3) + 1];
+		var distance = (larger - min) >> 3;
+		var mapper = new byte[distance + 1];
 		
 		for(int i = 0; i < length; i++) {
-			
-			if(largest == target[i]) continue;
-			
-			var val = target[i] - offset;
+			if(max == target[i]) continue;
+			var val = target[i] - min;
 			var index = val >> 3;
-			var f = F[val % 8];
+			var f = F[val & 7]; // % 8
 			mapper[index] = (byte)(mapper[index] | f);
 		}
 		
 		int idx = 0, size = mapper.length;
 		for(int i = 0; i < size; i++) {
+			var bit8 = mapper[i];
 			for(int j = 0; j < 8; j++) {
-				if(( mapper[i] & F[j]) > 0) {
-					target[idx++] = offset + (i << 3) + j;
-				}
+				if((bit8 & F[j]) == 0) continue;
+				target[idx++] = min + (i << 3) + j;
 			}
 		}
-		target[idx] = largest; //The largest is the last one
+		
+		target[idx] = max; //The largest is the last one
+		for(int i = ++idx; i < length; i++) target[i] = 0;
 	}
 }
