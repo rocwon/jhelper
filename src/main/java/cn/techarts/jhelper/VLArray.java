@@ -8,17 +8,30 @@ public final class VLArray {
 	public int length;
 	private int maxIndex;
 	
-	public static VLArray init(int len) {
-		return new VLArray(len);
+	public VLArray() {
+		this(64);
 	}
 	
-	private VLArray(int len) {
+	public VLArray(int len) {
 		data = new int[len <= 0 ? 32 : len];
 		this.length = data.length;
 	}
 	
+	/**
+	 * Wrap a fix length array to a variable length array
+	 * */
+	public VLArray(int[] array) {
+		data = array != null ? array : new int[64];
+		this.length = this.data.length;
+		this.maxIndex = this.length - 1;
+	}
+	
 	public int get(int index) {
 		return this.data[index];
+	}
+	
+	public void append(int item) {
+		this.put(maxIndex + 1, item);
 	}
 	
 	public void put(int index, int item) {
@@ -37,6 +50,7 @@ public final class VLArray {
 	 * */
 	public int[] get() {
 		var len = maxIndex + 1;
+		if(len == data.length) return data;
 		var result = new int[len];
 		System.arraycopy(data, 0, result, 0, len);
 		return result;
@@ -48,6 +62,14 @@ public final class VLArray {
 	 * */
 	public int[] get(int bgn, int end) {
 		return Slicer.slice(this.data, bgn, end);
+	}
+	
+	/**
+	 * Slice the array from the specific indexes start(inclusive) to end(exclusive).
+	 * @see Slicer.slice
+	 * */
+	public int[] slice(int bgn, int end) {
+		return get(bgn, end - 1);
 	}
 	
 	private void extendsCapacity(int min) {

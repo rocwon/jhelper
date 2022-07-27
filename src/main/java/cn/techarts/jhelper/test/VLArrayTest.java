@@ -9,7 +9,7 @@ public class VLArrayTest {
 	
 	@Test
 	public void testVarLengthIntArray() {
-		var array = VLArray.init(32);
+		var array = new VLArray(32);
 		array.put(1, 999);
 		array.put(62, 22);
 		TestCase.assertEquals(999, array.get(1));
