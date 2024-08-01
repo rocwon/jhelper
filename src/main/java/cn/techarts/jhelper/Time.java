@@ -1,5 +1,6 @@
 package cn.techarts.jhelper;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -113,7 +114,7 @@ public final class Time {
 	 * Returns the seconds from 1970-01-01 0:0:0
 	 */
 	public static long seconds() {
-		return (long)(new Date().getTime() / 1000);
+		return Instant.now().getEpochSecond();
 	}
 	
 	/**
@@ -606,5 +607,14 @@ public final class Time {
 		int month = localDate.getMonthValue();
 		int q = month < 4 ? 1 : month > 9 ? 4 : 0;
 		return q > 0 ? q : month < 7 ? 2 : 3;
+	}
+	
+	/**
+	 *@return The cycles of specific duration since UTC 1970-01-01 00:00:00 
+	 */
+	public static long getTimeCycles(int duration) {
+		var d = duration <= 0 ? 32 : duration;
+		var seconds = System.currentTimeMillis() / 1000;
+		return d == 32 ? seconds >> 5 : (long)(seconds / d);
 	}
 }

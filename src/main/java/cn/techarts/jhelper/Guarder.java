@@ -7,7 +7,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.util.Random;
 import java.util.UUID;
-
 import javax.imageio.ImageIO;
 
 /**
@@ -196,4 +195,42 @@ public final class Guarder {
 		return result.equals(tmp.substring(8));
 	}
 	
+	/**
+	 * Follow the RFC6238 and compliant with RFC4226.
+	 * @param size 3 < size < 9 (or 4 ~ 8) 
+	 */
+	public static String getTotpToken(String key, int size) {
+		if(Empty.is(key)) return null;
+		long cycles = Time.getTimeCycles(30);
+		var tmp = lpad0(Long.toHexString(cycles), 16);
+		var steps = Converter.hex2Bytes(tmp); 
+		var tmp0 = Converter.toHexString(key);
+		var keyArray = Converter.hex2Bytes(tmp0);
+		var hash = Cryptor.hmac(keyArray, steps);
+		var offset = hash[hash.length - 1] & 0xf;
+		var tmp1 = Slicer.slice(hash, offset, offset + 3);
+		var len = size < 4 ? 4 : size > 8 ? 8 : size;
+		int totp = toInt(tmp1) % DIGITS_POWER[len];
+		return lpad0(Integer.toString(totp), len);
+	}
+	
+	private static int toInt(byte[] bytes) {
+		return  (bytes[0] & 0x7F) << 24  |
+	            (bytes[1] & 0xFF) << 16  |
+	            (bytes[2] & 0xFF) << 8   |
+	            (bytes[3] & 0xFF);
+	}
+	
+	private static final int[] DIGITS_POWER = {1 ,10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000};
+	
+	private static String lpad0(String s, int len) {
+		if(s.length() >= len) {
+			return s.toUpperCase();
+		}
+		var tmp = new StringBuilder(s);
+		while(tmp.length() < len) {
+			tmp.insert(0, '0');
+		}
+		return tmp.toString().toUpperCase();
+	}
 }

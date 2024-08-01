@@ -1,5 +1,6 @@
 package cn.techarts.jhelper;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -319,5 +320,22 @@ public final class Converter {
 		result[0] = (byte)val;
 		result[1] = (byte)(val >> 8);
 		return result;
+	}
+	
+	public static byte[] hex2Bytes(String hex) {
+		var str = "10" + hex; //For easier conversion
+		var tmp = new BigInteger(str, 16).toByteArray();
+	    return Slicer.slice(tmp, 1, tmp.length - 1);
+	}
+	
+	public static String toHexString(String val) {
+		if(Empty.is(val)) return null;
+		var size = val.length() << 1;
+		var result = new StringBuilder(size);
+		var chars = val.toCharArray();
+		for(var c : chars) {
+			result.append(Integer.toHexString(c));
+		}
+		return result.toString().toUpperCase();
 	}
 }

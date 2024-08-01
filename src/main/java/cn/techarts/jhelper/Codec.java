@@ -110,7 +110,7 @@ public final class Codec {
 	}
 	
 	@Deprecated
-	public byte[] toBCD(int arg) {
+	public byte[] encodeBCD(int arg) {
 		return null;
 	}
 }

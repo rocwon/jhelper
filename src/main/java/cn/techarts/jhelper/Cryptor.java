@@ -2,7 +2,10 @@ package cn.techarts.jhelper;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
+import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+
+import java.security.GeneralSecurityException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.MessageDigest;
@@ -12,7 +15,7 @@ import java.security.Signature;
 
 public final class Cryptor 
 {
-	private static final String A_SIGN = "SHA1withRSA";
+	private static final String A_SIGN = "RSA";
 	
 	/**
 	 *Convert bytes array to a hex string 
@@ -199,4 +202,20 @@ public final class Cryptor
 	        return false;
 	    }
 	}
+	
+	/**
+	 * Encrypt the data with the specific key based on HMAC0SHA1
+	 */
+    public static byte[] hmac(byte[] data, byte[] key){
+    	if(data == null || key == null) {
+    		throw new RuntimeException("data or key is null.");
+    	}
+    	try {
+	    	var hmac = Mac.getInstance("HmacSHA1");
+	    	hmac.init(new SecretKeySpec(data, "RAW"));
+        return hmac.doFinal(key);
+    	}catch(GeneralSecurityException e) {
+    		throw new RuntimeException("HMAC encrypt is failed.", e);
+    	}
+    }   
 }

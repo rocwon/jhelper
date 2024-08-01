@@ -142,7 +142,7 @@ public final class Requester {
 	}
 	
 	private static HttpRequest createHttpGetRequest(String url, Map<String, String> data) {
-		var uri = (Empty.is(data)) ? url : url.concat("?").concat(stringfy(data));
+		var uri = (Empty.is(data)) ? url : url.concat("?").concat(stringify(data));
 		return HttpRequest.newBuilder().uri(URI.create(uri))
 			   .timeout(Duration.ofSeconds(TIMEOUT_SECONDS)).GET()
 			   .header("Content-Type", CONTENT_TYPE_FORM).build();
@@ -154,7 +154,7 @@ public final class Requester {
 	private static HttpRequest createHttpRequest(String url, Map<String, String> data) {
 		return HttpRequest.newBuilder().uri(URI.create(url))
 			   .timeout(Duration.ofSeconds(TIMEOUT_SECONDS))
-			   .POST(BodyPublishers.ofString(stringfy(data)))
+			   .POST(BodyPublishers.ofString(stringify(data)))
 			   .header("Content-Type", CONTENT_TYPE_FORM).build();
 	}
 	
@@ -181,7 +181,7 @@ public final class Requester {
 	private static HttpRequest createHttpRequest(String url, Map<String, String> data, Map<String, String> headers) {
 		var result = HttpRequest.newBuilder().uri(URI.create(url))
 							    .timeout(Duration.ofSeconds(TIMEOUT_SECONDS))
-							    .POST(BodyPublishers.ofString(stringfy(data)))
+							    .POST(BodyPublishers.ofString(stringify(data)))
 							    .header("Content-Type", CONTENT_TYPE_JSON);
 		if(!Empty.is(headers)) headers.forEach((k,v)->result.header(k, v));
 		return result.build();
@@ -232,7 +232,7 @@ public final class Requester {
 	/**
 	 * Concatenates K-V parameters to an HTTP query-strings
 	 * */
-	private static String stringfy(Map<String, String> params) {
+	private static String stringify(Map<String, String> params) {
 		int index = 0;
 		var result = new StringBuilder(256);
 		if(Empty.is(params)) return "";

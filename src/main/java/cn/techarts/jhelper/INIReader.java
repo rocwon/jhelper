@@ -22,13 +22,13 @@ public final class INIReader{
 	 */
 	public INIReader(String path){
 		try{
-			var reader = new BufferedReader(new FileReader( path));
-			if( reader != null) { 
+			var reader = new BufferedReader(new FileReader(path));
+			if(reader != null) { 
 				loadIniData(reader); 
 				reader.close();
 			}
-		}catch( IOException e){
-			throw new RuntimeException( "Fail to load the ini file", e);
+		}catch(IOException e){
+			throw new RuntimeException("Fail to load the ini file", e);
 		}
 	}
 	
@@ -51,7 +51,7 @@ public final class INIReader{
 	 */
 	public String get(String section, String key){
 		var p = sections.get(section);
-		return p != null ? p.get( key) : "";
+		return p != null ? p.get(key) : "";
 	}
 	
 	/**
@@ -59,7 +59,7 @@ public final class INIReader{
 	 * Actually, it converts the result of the method {@link get} to INT 
 	 */
 	public int getInt(String section, String key){
-		return Converter.toInt(get( section, key));
+		return Converter.toInt(get(section, key));
 	}
 	
 	/**
@@ -67,7 +67,7 @@ public final class INIReader{
 	 * Actually, it converts the result of the method {@link get} to float 
 	 */
 	public float getFloat(String section, String key){
-		return Converter.toFloat(get( section, key));
+		return Converter.toFloat(get(section, key));
 	}
 	
 	/**
@@ -80,30 +80,32 @@ public final class INIReader{
 	
 	//-------------------------------------------------------------------------------------------------------
 	
-	private void loadIniData( BufferedReader reader) throws IOException{
-		if( reader == null) return; 
+	private void loadIniData(BufferedReader reader) throws IOException{
+		if(reader == null) return; 
 		String line = null;
 		Map<String, String> section = null; 
-		while( (line = reader.readLine()) != null) {
+		while((line = reader.readLine()) != null) {
 			line = line.trim();
-			if( line.isEmpty()) continue;
-			if( line.startsWith( "//")) continue;
-			if( line.matches( SECTION)){
+			if(line.isEmpty()) continue;
+			// 2 types of comments are supported
+			if(line.startsWith("#")) continue;
+			if(line.startsWith("//")) continue;
+			if(line.matches(SECTION)){
 				section = new HashMap<String, String>(12);
-				sections.put( sect( line), section);
-			}else if( line.matches( ".*=.*")){
-				if( section != null) set( line, section);
+				sections.put(sect(line), section);
+			}else if(line.matches(".*=.*")){
+				if(section != null) set(line, section);
 			}
 		}
 	}
 	
-	private void set( String line, Map<String, String> section){
-		int i = line.indexOf( '='); if( i < 1) return;
-		section.put( line.substring(0, i).trim(),
-						  line.substring( i + 1).trim());
+	private void set(String line, Map<String, String> section){
+		int i = line.indexOf('='); if(i < 1) return;
+		section.put(line.substring(0, i).trim(),
+						  line.substring(i + 1).trim());
 	}
 	
-	private String sect( String line){
+	private String sect(String line){
 		return line.replaceFirst("\\[(.*)\\]", "$1");
 	}
 }
